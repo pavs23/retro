@@ -1,0 +1,1 @@
+Simple scaffold for React projects.
