@@ -1,6 +1,7 @@
 import React from 'react'
 import Example from 'Components/example'
-import AnotherOne from 'Components/another-one'
+import GlobalStyles from 'Styles/global'
+import AnotherOne from 'Components/anotherone'
 
 import {
   BrowserRouter as Router,

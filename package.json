@@ -25,6 +25,7 @@
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2",
     "style-loader": "^0.18.2",
+    "styled-components": "^2.2.1",
     "webpack": "^3.3.0",
     "webpack-merge": "^4.1.0"
   },

@@ -12,8 +12,7 @@ module.exports = {
     extensions: [ '.jsx', '.json', '.css', '.js' ],    
     alias: {
       'Components': path.resolve('./client/components'),
-      'Classes':    path.resolve('./client/dtos'),
-      'Styles':     path.resolve('./client/styles')
+      'Styles': path.resolve('./client/styles')      
     }
   },
   module: {
