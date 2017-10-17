@@ -1,5 +1,3 @@
-Simple scaffold for React projects.
-
 Dev
 ```
 yarn
