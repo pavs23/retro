@@ -10,14 +10,6 @@ export default class Landing extends React.Component {
     }
   }
 
-  componentDidMount(){
-    this.setState({started: false})
-  }
-
-  componentWillUnmount() {
-    this.setState({started: false})
-  }
-
   render() {
 
     const Container = styled.div`
