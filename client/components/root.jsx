@@ -1,7 +1,7 @@
 import React from 'react'
-import Example from 'Components/example'
+import Landing from 'Components/landing'
+import TwoTruthsOneLie from 'Components/twotruths'
 import GlobalStyles from 'Styles/global'
-import AnotherOne from 'Components/anotherone'
 
 import {
   BrowserRouter as Router,
@@ -19,8 +19,8 @@ export default class Root extends React.Component {
     return(
       <Router>
         <div>
-          <Route exact path="/" component={Example}/>
-          <Route path="/anotherOne" component={AnotherOne}/>
+          <Route exact path="/" component={Landing}/>
+          <Route exact path="/twotruthsonelie" component={TwoTruthsOneLie}/>
         </div>
       </Router>
     )

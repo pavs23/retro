@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
 
-  entry:  './client/index.js',
+  entry:  './client/index.jsx',
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js'
@@ -22,7 +22,7 @@ module.exports = {
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
       },
       { 
-        test: /\.js$/, 
+        test: /\.jsx$/, 
         loader: 'babel-loader', exclude: /node_modules/
       }
     ]
