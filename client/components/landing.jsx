@@ -85,8 +85,7 @@ export default class Landing extends React.Component {
             this.state.started && (
               <GamesList>
                 <Game onClick={() => {window.location.href = '/twotruthsonelie'}}>Two truths - One Lie</Game>
-                <DisabledGame>Impersonator</DisabledGame>
-                <DisabledGame>Another One</DisabledGame>                
+                <DisabledGame>Impersonator</DisabledGame>             
               </GamesList>
             )
           }

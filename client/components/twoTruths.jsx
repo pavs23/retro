@@ -6,7 +6,7 @@ export default class TwoTruthsOneLie extends React.Component {
   render() {
     return (
       <GameContainer>
-        
+
       </GameContainer>
     ) 
   }
