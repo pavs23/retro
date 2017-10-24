@@ -70,9 +70,7 @@ export default class Landing extends React.Component {
     return (
       <Container>
         <WelcomeBox>
-
           <WelcomeMessage>Retro</WelcomeMessage>
-
           {
             this.state.started || (
               <GetStartedButton onClick={this.start.bind(this)}>
@@ -80,7 +78,6 @@ export default class Landing extends React.Component {
               </GetStartedButton>
             )
           }
-
           {
             this.state.started && (
               <GamesList>
@@ -89,7 +86,6 @@ export default class Landing extends React.Component {
               </GamesList>
             )
           }
-
         </WelcomeBox>
       </Container>
     )

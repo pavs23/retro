@@ -6,8 +6,15 @@ export default class GameContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: undefined
+      name: null
     }
+  }
+
+  startRename(e) {
+    this.setState({
+      ...this.state,
+      name: "Wilhelm"
+    })
   }
 
   render() {
@@ -31,14 +38,12 @@ export default class GameContainer extends React.Component {
       user-select: none;
     `
 
-    const NameField = styled.div`
+    const NameField = styled.input`
       top: 12px;
       left: 22px;
       font-size: 18px;
       font-weight: 700;
       position: fixed; 
-      cursor: pointer;
-      user-select: none;
     `
 
     const NameEntry = NameField.extend`
@@ -49,9 +54,10 @@ export default class GameContainer extends React.Component {
       <Container>
         <GameIndicator>GameId: <GameId>#dsa87t7</GameId> </GameIndicator>
         {
-          this.state.name != undefined 
-            ? <NameField>{this.state.name}</NameField>
-            : <NameEntry>Enter Name</NameEntry>
+          this.state.name != null 
+            ? <NameField value={this.state.name}/>
+            : <NameEntry   defaultValue={"Enter Name"} 
+                onClick={this.startRename.bind(this)}/>
         }
         {this.props.children}
       </Container>

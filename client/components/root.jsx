@@ -1,6 +1,6 @@
 import React from 'react'
 import Landing from 'Components/landing'
-import TwoTruthsOneLie from 'Components/twotruths'
+import TwoTruthsOneLie from 'Components/two-truths'
 import GlobalStyles from 'Styles/global'
 
 import {
