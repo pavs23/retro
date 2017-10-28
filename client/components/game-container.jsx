@@ -21,12 +21,20 @@ const GameIndicator = styled.div`
   user-select: none;
 `
 
+const Form = styled.form`
+`
+
 const NameField = styled.input`
   top: 12px;
   left: 22px;
+  border: none;
   font-size: 18px;
   font-weight: 700;
   position: fixed; 
+
+  &:focus {
+    outline: none;
+  }
 `
 
 export default class GameContainer extends React.Component {
@@ -38,20 +46,30 @@ export default class GameContainer extends React.Component {
     }
   }
 
-  handleChange(event) {
-    this.setState({name: event.target.value});
+  handleChange(e) {
+    this.setState({name: e.target.value});
+  }
+
+  handleSubmit(e){
+    e.preventDefault()
+    
+    // TODO: Here we want to figure out how to make it known to 
+    // the user that their name has been changed for all players,
+    // and when this takes effect.
   }
 
   render() {    
     return (
       <Container>
         <GameIndicator>GameId: <GameId>#dsa87t7</GameId> </GameIndicator>
+        <Form onSubmit={this.handleSubmit.bind(this)}>
         <NameField
-          key="123"
+          name="name"
           placeholder={"Enter Name"}
           value={this.state.name}
           onChange={this.handleChange.bind(this)}
         />
+        </Form>        
         {this.props.children}
       </Container>
     )
