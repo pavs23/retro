@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export default class Landing extends React.Component {
 
@@ -16,7 +17,6 @@ export default class Landing extends React.Component {
       position: relative;
       width: 100%;
       height: 100%;
-      color: #007AFF;
     `
 
     const WelcomeBox = styled.div`
@@ -41,7 +41,7 @@ export default class Landing extends React.Component {
       height: 40px;
       border: none;
       cursor: pointer;
-      color: inherit;
+      color: #007AFF;
       background-color: #fff;
       text-align: center;
       text-decoration: none;
@@ -54,12 +54,15 @@ export default class Landing extends React.Component {
       margin-top: 200px;
     `
 
-    const Game = styled.div`
+    const Game = styled(Link)`
       width: 100%;
       margin: 15px;
       font-size: 32px;
+      color: #007AFF;
       cursor: pointer;
       text-align: center;
+      text-decoration: none;
+      color: 
     `
 
     const DisabledGame = Game.extend`
@@ -81,8 +84,8 @@ export default class Landing extends React.Component {
           {
             this.state.started && (
               <GamesList>
-                <Game onClick={() => {window.location.href = '/twotruthsonelie'}}>Two truths - One Lie</Game>
-                <DisabledGame>Impersonator</DisabledGame>             
+                <Game to="/twotruthsonelie">Two truths - One Lie</Game>
+                <DisabledGame to="/">Impersonator</DisabledGame>             
               </GamesList>
             )
           }
