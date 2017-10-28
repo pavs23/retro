@@ -1,19 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`
+`;
 
 const WelcomeMessage = styled.p`
   position: relative;
   color: black;
   text-align: center;
   font-size: 64px;
-`
+`;
 
 const GetStartedButton = styled.button`
   position: absolute;
@@ -29,13 +29,13 @@ const GetStartedButton = styled.button`
   text-align: center;
   text-decoration: none;
   font-size: 22px;
-`
+`;
 
 const GamesList = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 200px;
-`
+`;
 
 const Game = styled(Link)`
   width: 100%;
@@ -46,37 +46,39 @@ const Game = styled(Link)`
   text-align: center;
   text-decoration: none;
   color: 
-`
+`;
 
 const DisabledGame = Game.extend`
   cursor: default;
   color: #999;
-`
+`;
 
 export default class Landing extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      started: false
-    }
+      started: false,
+    };
+    this.start = this.start.bind(this);
+  }
+
+  start() {
+    this.setState({ started: true });
   }
 
   render() {
-
     const WelcomeBox = styled.div`
       position: absolute;
       width: 100%;      
-      top: ${ this.state.started ? '0%' : '40%'};
-    `
-    
+      top: ${this.state.started ? '0%' : '40%'};
+    `;
     return (
       <Container>
         <WelcomeBox>
           <WelcomeMessage>Retro</WelcomeMessage>
           {
             this.state.started || (
-              <GetStartedButton onClick={this.start.bind(this)}>
+              <GetStartedButton onClick={this.start}>
                 Get Started
               </GetStartedButton>
             )
@@ -85,17 +87,12 @@ export default class Landing extends React.Component {
             this.state.started && (
               <GamesList>
                 <Game to="/twotruthsonelie">Two truths - One Lie</Game>
-                <DisabledGame to="/">Impersonator</DisabledGame>             
+                <DisabledGame to="/">Impersonator</DisabledGame>
               </GamesList>
             )
           }
         </WelcomeBox>
       </Container>
-    )
+    );
   }
-
-  start(){
-    this.setState({started: true})
-  }
-
 }
