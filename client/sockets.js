@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 const socket = io('http://localhost:3000');
 
 function subscribeToUpdates(cb) {
-  socket.on('update', timestamp => cb(null, timestamp));
+  socket.on('update', newState => cb(null, newState));
 }
 
 // Refactor this to be a more specific API, so that we can include
