@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { subscribeToUpdates, dispatch } from '../sockets';
 
 const Container = styled.div`
   position: relative;
@@ -46,6 +47,18 @@ export default class GameContainer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdates = this.handleUpdates.bind(this);
+  }
+
+  componentDidMount() {
+    subscribeToUpdates(this.handleUpdates);
+  }
+
+  handleUpdates(err, newState) {
+    // TODO - Perform State Reconciliation. Currently just logging a
+    // newState to keep eslint happy.
+    console.log(newState);
+    this.setState({});
   }
 
   handleChange(event) {
@@ -54,6 +67,8 @@ export default class GameContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log('Dispatching Name Change');
+    dispatch('nameChange', this.state.name);
     this.setState({});
     // TODO: Here we want to figure out how to make it known to
     // the user that their name has been changed for all players,

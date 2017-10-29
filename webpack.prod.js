@@ -10,12 +10,12 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'client/index.html'),
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  ]
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+  ],
 });
