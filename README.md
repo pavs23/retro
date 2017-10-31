@@ -7,14 +7,23 @@ Scoped for initial release:
 * Impersonator
 
 ## Running
-Dev
+### Web App
+Developer Environment
 ```
 yarn
 yarn run dev
 ```
-
-Prod
+Production Environment
 ```
 yarn
 yarn start
+```
+### Api
+```
+yarn 
+yarn start
+```
+### Production
+```
+docker-compose up
 ```
