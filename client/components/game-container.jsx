@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { subscribeToUpdates, dispatch } from '../sockets';
+import { subscribeToUpdates, changeName } from '../sockets';
 
 const Container = styled.div`
   position: relative;
@@ -46,6 +46,7 @@ export default class GameContainer extends React.Component {
     this.state = {
       inputName: '',
       userName: '',
+      gameId: '#dsa87t7',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -69,17 +70,14 @@ export default class GameContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    dispatch('nameChange', this.state.inputName);
+    changeName(this.state.inputName);
     this.setState({ userName: this.state.inputName });
-    // TODO: Here we want to figure out how to make it known to
-    // the user that their name has been changed for all players,
-    // and when this takes effect.
   }
 
   render() {
     return (
       <Container>
-        <GameIndicator>GameId: <GameId>#dsa87t7</GameId> </GameIndicator>
+        <GameIndicator>GameId: <GameId>{this.state.gameId}</GameId> </GameIndicator>
         <Form onSubmit={this.handleSubmit}>
           <NameField
             name="name"

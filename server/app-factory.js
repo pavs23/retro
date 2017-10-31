@@ -32,7 +32,7 @@ const getReactAppForEnvironment = () => {
       createDevelopmentApp(app);
       break;
     default:
-      console.log('Could not determine environment from node env variable.');
+      throw new Error('Could not determine environment from node env variable.');
   }
 
   app.get('*', (req, res) => {

@@ -1,15 +1,20 @@
 import io from 'socket.io-client';
 
+// TODO: Set this as part of deployment
 const socket = io('http://localhost:3000');
-
-function subscribeToUpdates(cb) {
-  socket.on('update', newState => cb(null, newState));
-}
 
 // Refactor this to be a more specific API, so that we can include
 // dispatchable events into our components from here.
-function dispatch(event, payload) {
+const dispatch = (event, payload) => {
   socket.emit(event, payload);
-}
+};
 
-export { subscribeToUpdates, dispatch };
+const subscribeToUpdates = (cb) => {
+  socket.on('update', newState => cb(null, newState));
+};
+
+const changeName = (newName) => {
+  dispatch('changeName', newName);
+};
+
+export { subscribeToUpdates, changeName };

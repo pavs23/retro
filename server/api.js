@@ -4,13 +4,17 @@ const app = new Koa();
 const server = require('http').createServer(app.callback());
 const io = require('socket.io')(server);
 
+const changeName = () => {
+  console.log('Change name event.');
+};
+
+const updateGameState = () => {
+  console.log('Update game event.');
+};
+
 io.on('connection', (socket) => {
-  socket.on('nameChange', (payload) => {
-    console.log('Received nameChange', payload);
-    // TODO: Add Database to maintain game states for all players.
-    // At the moment we just log the name change events.
-  });
-  console.log('Someone connected');
+  socket.on('changeName', payload => changeName(payload));
+  socket.on('updateGameState', payload => updateGameState(payload));
 });
 
 server.listen(3000);
