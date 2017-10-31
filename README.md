@@ -25,5 +25,6 @@ yarn start
 ```
 ### Docker Compose
 ```
+docker-compose build
 docker-compose up
 ```
