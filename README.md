@@ -23,7 +23,7 @@ yarn start
 yarn 
 yarn start
 ```
-### Production
+### Docker Compose
 ```
 docker-compose up
 ```
