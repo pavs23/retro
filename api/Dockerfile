@@ -1,5 +1,5 @@
 FROM node:boron
-WORKDIR /usr/src/app
+WORKDIR /usr/src/api
 COPY . .
 RUN npm install -g yarn
 RUN yarn

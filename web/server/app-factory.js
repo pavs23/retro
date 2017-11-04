@@ -9,9 +9,7 @@ const clientPath = '../dist/';
 
 const createProductionApp = (app) => {
   const compiler = webpack(webpackProdConfig);
-  compiler.run((err, stats) => {
-    console.log(stats);
-  });
+  compiler.run((err) => { if (err) { throw err; } });
   app.set('env', 'production');
 };
 

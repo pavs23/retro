@@ -4,4 +4,4 @@ COPY . .
 RUN npm install -g yarn
 RUN yarn
 EXPOSE 5000
-CMD ["yarn", "run", "dev"]
+CMD ["yarn", "start"]
