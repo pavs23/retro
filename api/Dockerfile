@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:8.9.0
 WORKDIR /usr/src/api
 COPY . .
 RUN npm install -g yarn

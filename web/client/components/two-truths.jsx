@@ -1,5 +1,4 @@
 import React from 'react';
-import GameContainer from 'Components/game-container';
 import styled from 'styled-components';
 
 const Fact = styled.div`
@@ -20,13 +19,12 @@ class TwoTruthsOneLie extends React.Component {
       facts: null,
     };
   }
+
   render() {
     return (
-      <GameContainer>
-        <FactContainer>
-          <Fact>{this.state.facts}</Fact>
-        </FactContainer>
-      </GameContainer>
+      <FactContainer>
+        <Fact>{this.state.facts}</Fact>
+      </FactContainer>
     );
   }
 }

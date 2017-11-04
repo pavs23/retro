@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import TwoTruthsOneLie from 'Components/two-truths';
 import { subscribeToUpdates, changeName } from '../sockets';
+import GameTypes from '../game-types';
 
 const Container = styled.div`
   position: relative;
@@ -47,6 +49,7 @@ export default class GameContainer extends React.Component {
       inputName: '',
       userName: '',
       gameId: '#dsa87t7',
+      gameState: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,21 +60,27 @@ export default class GameContainer extends React.Component {
     subscribeToUpdates(this.handleUpdates);
   }
 
-  handleUpdates(err, newState) {
-    // TODO - Perform State Reconciliation. Currently just logging a
-    // newState to keep eslint happy.
-    console.log(newState);
-    this.setState({});
-  }
-
-  handleChange(event) {
-    this.setState({ inputName: event.target.value });
+  getGameFromType() {
+    switch (this.props.gameType) {
+      case GameTypes.TWOTRUTHSONELIE:
+        return <TwoTruthsOneLie />;
+      default:
+        throw new Error('Could not find game: ', this.props.gameType);
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     changeName(this.state.inputName);
     this.setState({ userName: this.state.inputName });
+  }
+
+  handleChange(event) {
+    this.setState({ inputName: event.target.value });
+  }
+
+  handleUpdates(err, gameState) {
+    this.setState({ ...this.state, gameState });
   }
 
   render() {
@@ -87,12 +96,12 @@ export default class GameContainer extends React.Component {
             onChange={this.handleChange}
           />
         </Form>
-        {this.props.children}
+        {this.getGameFromType()}
       </Container>
     );
   }
 }
 
 GameContainer.propTypes = {
-  children: PropTypes.node.isRequired,
+  gameType: PropTypes.string.isRequired,
 };
