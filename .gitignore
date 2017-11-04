@@ -3,4 +3,4 @@ node_modules/
 web/dist/bundle.js
 web/dist/index.html
 .vscode/
-data/
+data/db/
