@@ -7,6 +7,7 @@ Scoped for initial release:
 * Impersonator
 
 ## Running
+The Mongodb connection currently only works when running the Docker configuration. It can be reconfigured in `api/db.js`.
 ### Web App
 Developer Environment
 ```
