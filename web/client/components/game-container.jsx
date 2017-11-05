@@ -32,11 +32,11 @@ const NameField = styled.input`
   top: 12px;
   left: 22px;
   border: none;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
   position: fixed; 
   color: ${props => (props.value === props.userName ? 'black' : 'grey')};
-  
+  background-color: inherit;
   &:focus {
     outline: none;
   }
@@ -49,24 +49,40 @@ export default class GameContainer extends React.Component {
       inputName: '',
       userName: '',
       gameId: '#dsa87t7',
-      gameState: null,
+      gameState: undefined,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdates = this.handleUpdates.bind(this);
+    this.updateGameState = this.updateGameState.bind(this);
   }
 
   componentDidMount() {
     subscribeToUpdates(this.handleUpdates);
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
   getGameFromType() {
     switch (this.props.gameType) {
       case GameTypes.TWOTRUTHSONELIE:
-        return <TwoTruthsOneLie />;
+        return (
+          <TwoTruthsOneLie
+            updateGameState={this.updateGameState}
+            gameState={this.state.gameState}
+          />
+        );
       default:
         throw new Error('Could not find game: ', this.props.gameType);
     }
+  }
+
+  // This is temporary workaround. Game state will be published
+  // to API, which will update all clients' gameStates instead.
+  updateGameState(gameState) {
+    this.setState({ gameState });
   }
 
   handleSubmit(event) {
