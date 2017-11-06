@@ -25,7 +25,7 @@ const GetStartedButton = styled.button`
   border: none;
   cursor: pointer;
   color: #007AFF;
-  background-color: #fff;
+  background-color: #f6f9fc;
   text-align: center;
   text-decoration: none;
   font-size: 22px;
@@ -45,7 +45,11 @@ const Game = styled(Link)`
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: 
+`;
+
+const JoinGame = Game.extend`
+  margin-top: 120px;
+  color: #d35400;
 `;
 
 const DisabledGame = Game.extend`
@@ -88,6 +92,7 @@ export default class Landing extends React.Component {
               <GamesList>
                 <Game to="/twotruthsonelie">Two truths - One Lie</Game>
                 <DisabledGame to="/">Impersonator</DisabledGame>
+                <JoinGame to="/join">Join Game</JoinGame>
               </GamesList>
             )
           }

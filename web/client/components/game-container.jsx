@@ -42,13 +42,21 @@ const NameField = styled.input`
   }
 `;
 
+const generateRandomFourDigitNumber = () => {
+  let base = Math.random();
+  base *= 10000;
+  base = Math.floor(base);
+  return base;
+};
+
 export default class GameContainer extends React.Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       inputName: '',
       userName: '',
-      gameId: '#dsa87t7',
+      gameId: this.props.params.id,
       gameState: undefined,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -59,10 +67,6 @@ export default class GameContainer extends React.Component {
 
   componentDidMount() {
     subscribeToUpdates(this.handleUpdates);
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   getGameFromType() {
@@ -118,6 +122,14 @@ export default class GameContainer extends React.Component {
   }
 }
 
+// TODO: Implement this validator
+const isParamsProp = () => {};
+
 GameContainer.propTypes = {
   gameType: PropTypes.string.isRequired,
+  params: isParamsProp,
+};
+
+GameContainer.defaultProps = {
+  params: { id: generateRandomFourDigitNumber() },
 };
