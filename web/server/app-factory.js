@@ -33,10 +33,11 @@ const getReactAppForEnvironment = () => {
       throw new Error('Could not determine environment from node env variable.');
   }
 
-  app.get('*', (req, res) => {
+  app.use((req, res) => {
     const indexPath = path.join(__dirname, clientPath, 'index.html');
     res.sendFile(indexPath);
   });
+
   return app;
 };
 
