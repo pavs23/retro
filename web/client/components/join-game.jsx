@@ -19,6 +19,8 @@ const GameIdField = styled.input`
   }
 `;
 
+const validGameId = id => id.length > 0 && id.length < 5;
+
 export default class JoinGame extends React.Component {
   constructor(props) {
     super(props);
@@ -31,9 +33,13 @@ export default class JoinGame extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const id = event.target.gameId.value;
+
+    if (!validGameId(id)) return;
+
     this.setState({
       submitted: true,
-      gameId: event.target.gameId.value,
+      gameId: id,
     });
   }
 

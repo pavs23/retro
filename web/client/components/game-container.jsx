@@ -46,17 +46,16 @@ const generateRandomFourDigitNumber = () => {
   let base = Math.random();
   base *= 10000;
   base = Math.floor(base);
-  return base;
+  return base.toString();
 };
 
 export default class GameContainer extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       inputName: '',
       userName: '',
-      gameId: this.props.params.id,
+      gameId: this.props.gameId,
       gameState: undefined,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -122,14 +121,11 @@ export default class GameContainer extends React.Component {
   }
 }
 
-// TODO: Implement this validator
-const isParamsProp = () => {};
-
 GameContainer.propTypes = {
   gameType: PropTypes.string.isRequired,
-  params: isParamsProp,
+  gameId: PropTypes.string,
 };
 
 GameContainer.defaultProps = {
-  params: { id: generateRandomFourDigitNumber() },
+  gameId: generateRandomFourDigitNumber(),
 };
