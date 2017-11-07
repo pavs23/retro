@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const CardContainer = styled.div`
   width: 600px;
-  height: 100%;
+  height: 70%;
   left: 50%;
   top: 30%;
   transform: translate(-50%, 0%);
@@ -30,9 +30,19 @@ class TwoTruthsOneLie extends React.Component {
   render() {
     return (
       <CardContainer>
-        <Card index={1} updateFact={this.updateFact} />
-        <Card index={2} updateFact={this.updateFact} />
-        <Card index={3} updateFact={this.updateFact} />
+        <Card
+          selected
+          index={1}
+          updateFact={this.updateFact}
+        />
+        <Card
+          index={2}
+          updateFact={this.updateFact}
+        />
+        <Card
+          index={3}
+          updateFact={this.updateFact}
+        />
       </CardContainer>
     );
   }
