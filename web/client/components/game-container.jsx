@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TwoTruthsOneLie from 'Components/two-truths';
+import CurrentPlayers from 'Components/current-players';
 import { subscribeToUpdates, changeName } from '../sockets';
 import GameTypes from '../game-types';
 
@@ -116,6 +117,7 @@ export default class GameContainer extends React.Component {
           />
         </Form>
         {this.getGameFromType()}
+        <CurrentPlayers />
       </Container>
     );
   }
