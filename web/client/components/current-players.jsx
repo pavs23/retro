@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const PlayerContainer = styled.div`
   position: absolute;
@@ -10,6 +11,20 @@ const PlayerContainer = styled.div`
   background-color: #ecf0f1;
 `;
 
-const CurrentPlayers = () => <PlayerContainer />;
+const Player = styled.div`
+  width: 100%;
+  height: 30px;
+  color: black;
+`;
+
+const CurrentPlayers = props => (
+  <PlayerContainer>
+    {props.players.map(() => <Player />)}
+  </PlayerContainer>
+);
+
+CurrentPlayers.propTypes = {
+  players: PropTypes.string.isRequired,
+};
 
 export default CurrentPlayers;
