@@ -5,6 +5,7 @@ import TwoTruthsOneLie from 'Components/two-truths';
 import CurrentPlayers from 'Components/current-players';
 import { subscribeToUpdates, changeName } from '../sockets';
 import GameTypes from '../game-types';
+import gameOne from '../mocks/game-states';
 
 const Container = styled.div`
   position: relative;
@@ -57,7 +58,7 @@ export default class GameContainer extends React.Component {
       inputName: '',
       userName: '',
       gameId: this.props.gameId,
-      gameState: undefined,
+      gameState: gameOne,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -117,7 +118,7 @@ export default class GameContainer extends React.Component {
           />
         </Form>
         {this.getGameFromType()}
-        <CurrentPlayers />
+        <CurrentPlayers players={this.state.gameState.players} />
       </Container>
     );
   }
