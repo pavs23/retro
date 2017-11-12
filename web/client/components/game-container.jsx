@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TwoTruthsOneLie from 'Components/two-truths';
+import NameField from 'Components/name-field';
 import CurrentPlayers from 'Components/current-players';
-import { subscribeToUpdates, changeName } from '../sockets';
+import { subscribeToUpdates } from '../sockets';
 import GameTypes from '../game-types';
 import gameOne from '../mocks/game-states';
 
@@ -27,24 +28,7 @@ const GameIndicator = styled.div`
   user-select: none;
 `;
 
-const Form = styled.form`
-`;
-
-const NameField = styled.input`
-  top: 12px;
-  left: 22px;
-  border: none;
-  font-size: 28px;
-  font-weight: 700;
-  position: fixed; 
-  color: ${props => (props.value === props.userName ? 'black' : 'grey')};
-  background-color: inherit;
-  &:focus {
-    outline: none;
-  }
-`;
-
-const generateRandomFourDigitNumber = () => {
+const generateGameId = () => {
   let base = Math.random();
   base *= 10000;
   base = Math.floor(base);
@@ -55,15 +39,13 @@ export default class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputName: '',
       userName: '',
       gameId: this.props.gameId,
       gameState: gameOne,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdates = this.handleUpdates.bind(this);
     this.updateGameState = this.updateGameState.bind(this);
+    this.changeName = this.changeName.bind(this);
   }
 
   componentDidMount() {
@@ -90,14 +72,8 @@ export default class GameContainer extends React.Component {
     this.setState({ gameState });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    changeName(this.state.inputName);
-    this.setState({ userName: this.state.inputName });
-  }
-
-  handleChange(event) {
-    this.setState({ inputName: event.target.value });
+  changeName(userName) {
+    this.setState({ userName });
   }
 
   handleUpdates(err, gameState) {
@@ -108,15 +84,7 @@ export default class GameContainer extends React.Component {
     return (
       <Container>
         <GameIndicator>GameId: <GameId>{this.state.gameId}</GameId> </GameIndicator>
-        <Form onSubmit={this.handleSubmit}>
-          <NameField
-            name="name"
-            placeholder="Enter Name"
-            value={this.state.inputName}
-            userName={this.state.userName}
-            onChange={this.handleChange}
-          />
-        </Form>
+        <NameField changeName={this.changeName} userName={this.state.userName} />
         {this.getGameFromType()}
         <CurrentPlayers players={this.state.gameState.players} />
       </Container>
@@ -130,5 +98,5 @@ GameContainer.propTypes = {
 };
 
 GameContainer.defaultProps = {
-  gameId: generateRandomFourDigitNumber(),
+  gameId: generateGameId(),
 };
