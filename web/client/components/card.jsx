@@ -53,10 +53,14 @@ export default class Card extends React.Component {
     this.props.updateFact(this.props.index, this.state.inputFact);
   }
 
+  handleSelect = () => {
+    this.props.handleSelect(this.props.index);
+  }
+
   render = () => (
     <StyledCard
       selected={this.props.selected}
-      onClick={this.props.handleSelect}
+      onClick={this.handleSelect}
     >
       <Form onSubmit={this.handleFactSubmit}>
         <FactField

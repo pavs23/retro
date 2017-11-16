@@ -66,6 +66,7 @@ export default class GameContainer extends React.Component {
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
   updateGameState = (gameState) => {
+    console.log(gameState);
     this.setState({ gameState });
   }
 
