@@ -43,16 +43,13 @@ export default class GameContainer extends React.Component {
       gameId: this.props.gameId,
       gameState: gameOne,
     };
-    this.handleUpdates = this.handleUpdates.bind(this);
-    this.updateGameState = this.updateGameState.bind(this);
-    this.changeName = this.changeName.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     subscribeToUpdates(this.handleUpdates);
   }
 
-  getGameFromType() {
+  getGameFromType = () => {
     switch (this.props.gameType) {
       case GameTypes.TWOTRUTHSONELIE:
         return (
@@ -68,15 +65,15 @@ export default class GameContainer extends React.Component {
 
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
-  updateGameState(gameState) {
+  updateGameState = (gameState) => {
     this.setState({ gameState });
   }
 
-  changeName(userName) {
+  changeName = (userName) => {
     this.setState({ userName });
   }
 
-  handleUpdates(err, gameState) {
+  handleUpdates = (err, gameState) => {
     this.setState({ ...this.state, gameState });
   }
 

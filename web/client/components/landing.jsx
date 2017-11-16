@@ -66,11 +66,11 @@ export default class Landing extends React.Component {
     this.start = this.start.bind(this);
   }
 
-  start() {
+  start = () => {
     this.setState({ started: true });
   }
 
-  render() {
+  render = () => {
     const WelcomeBox = styled.div`
       position: absolute;
       width: 100%;      

@@ -15,12 +15,7 @@ const CardContainer = styled.div`
 `;
 
 class TwoTruthsOneLie extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateFact = this.updateFact.bind(this);
-  }
-
-  updateFact(index, fact) {
+  updateFact = (index, fact) => {
     if (index > 3 || index < 0) throw new Error('Unexpected number of facts.');
     const newGameState = this.props.gameState;
     newGameState.facts[index] = fact;
@@ -31,15 +26,17 @@ class TwoTruthsOneLie extends React.Component {
     return (
       <CardContainer>
         <Card
-          selected
+          selected={this.props.gameState.facts[0].selected}
           index={1}
           updateFact={this.updateFact}
         />
         <Card
+          selected={this.props.gameState.facts[1].selected}
           index={2}
           updateFact={this.updateFact}
         />
         <Card
+          selected={this.props.gameState.facts[2].selected}
           index={3}
           updateFact={this.updateFact}
         />
@@ -48,12 +45,10 @@ class TwoTruthsOneLie extends React.Component {
   }
 }
 
-const gameStatePropType = (props, propName) => {
-  if (props[propName] == null) throw Error();
-};
-
 TwoTruthsOneLie.propTypes = {
-  gameState: gameStatePropType,
+  gameState: PropTypes.shape({
+    facts: PropTypes.arrayOf(PropTypes.string),
+  }),
   updateGameState: PropTypes.func.isRequired,
 };
 

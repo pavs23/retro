@@ -42,37 +42,33 @@ export default class Card extends React.Component {
     this.state = {
       inputFact: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFactSubmit = this.handleFactSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ inputFact: event.target.value });
   }
 
-  handleFactSubmit(event) {
+  handleFactSubmit = (event) => {
     event.preventDefault();
     this.props.updateFact(this.props.index, this.state.inputFact);
   }
 
-  render() {
-    return (
-      <StyledCard
-        selected={this.props.selected}
-        onClick={this.props.handleSelect}
-      >
-        <Form onSubmit={this.handleFactSubmit}>
-          <FactField
-            name="name"
-            placeholder="Submit fact here..."
-            value={this.state.inputFact}
-            onChange={this.handleChange}
-            selected={this.props.selected}
-          />
-        </Form>
-      </StyledCard>
-    );
-  }
+  render = () => (
+    <StyledCard
+      selected={this.props.selected}
+      onClick={this.props.handleSelect}
+    >
+      <Form onSubmit={this.handleFactSubmit}>
+        <FactField
+          name="name"
+          placeholder="Submit fact here..."
+          value={this.state.inputFact}
+          onChange={this.handleChange}
+          selected={this.props.selected}
+        />
+      </Form>
+    </StyledCard>
+  );
 }
 
 Card.propTypes = {

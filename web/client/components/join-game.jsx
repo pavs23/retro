@@ -28,10 +28,9 @@ export default class JoinGame extends React.Component {
       submitted: false,
       gameId: undefined,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     const id = event.target.gameId.value;
 
@@ -43,19 +42,17 @@ export default class JoinGame extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        {
-          /* Currently just redirecting to a random instance of twoTruths - will */
-          this.state.submitted &&
-          <Redirect to={`/twoTruthsOneLie/${this.state.gameId}`} />
-        }
-        <GameIdField
-          name="gameId"
-          placeholder="Input Game ID"
-        />
-      </Form>
-    );
-  }
+  render = () => (
+    <Form onSubmit={this.handleSubmit}>
+      {
+        /* Currently just redirecting to a random instance of twoTruths - will */
+        this.state.submitted &&
+        <Redirect to={`/twoTruthsOneLie/${this.state.gameId}`} />
+      }
+      <GameIdField
+        name="gameId"
+        placeholder="Input Game ID"
+      />
+    </Form>
+  );
 }

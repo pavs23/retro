@@ -20,6 +20,20 @@ const gameOne = {
       name: 'Davey',
     },
   ],
+  facts: [
+    {
+      value: 'hello',
+      selected: false,
+    },
+    {
+      value: '',
+      selected: true,
+    },
+    {
+      value: '',
+      selected: false,
+    },
+  ],
 };
 
 export default gameOne;
