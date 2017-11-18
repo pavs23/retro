@@ -1,7 +1,7 @@
 import React from 'react';
 import Landing from 'Components/landing';
 import PropTypes from 'prop-types';
-import GameContainer from 'Components/game-container';
+import GameContainer from 'Components/game-container/game-container';
 import JoinGame from 'Components/join-game';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import GameTypes from '../game-types';

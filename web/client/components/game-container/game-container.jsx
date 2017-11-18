@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import TwoTruthsOneLie from 'Components/two-truths';
-import NameField from 'Components/name-field';
-import CurrentPlayers from 'Components/current-players';
-import { subscribeToUpdates } from '../sockets';
-import GameTypes from '../game-types';
-import gameOne from '../mocks/game-states';
+import TwoTruthsOneLie from 'Components/two-truths/two-truths';
+import NameField from 'Components/game-container/name-field';
+import CurrentPlayers from 'Components/game-container/current-players';
+import { subscribeToUpdates } from '../../sockets';
+import GameTypes from '../../game-types';
+import gameOne from '../../mocks/game-states';
 
 const Container = styled.div`
   position: relative;
@@ -66,7 +66,6 @@ export default class GameContainer extends React.Component {
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
   updateGameState = (gameState) => {
-    console.log(gameState);
     this.setState({ gameState });
   }
 

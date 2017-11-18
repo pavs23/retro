@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Card from 'Components/card';
+import Card from 'Components/two-truths/card';
 import PropTypes from 'prop-types';
 
 const CardContainer = styled.div`
