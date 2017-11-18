@@ -27,9 +27,7 @@ export default class NameField extends React.Component {
     };
   }
 
-  handleChange = (event) => {
-    this.setState({ inputName: event.target.value });
-  }
+  handleChange = event => this.setState({ inputName: event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();

@@ -14,6 +14,33 @@ const CardContainer = styled.div`
   flex-direction: column;
 `;
 
+const Wrapper = styled.div``;
+
+const SubmitButton = styled.a`
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 8px;
+  padding: 0 14px;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .025em;
+  color: #34495e;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  transition: all .15s ease;
+
+  &:hover {
+    transform: translate(-50%, -2%);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  }
+`;
+
 class TwoTruthsOneLie extends React.Component {
   updateFact = (index, fact) => {
     if (index > 3 || index < 0) throw new Error('Unexpected number of facts.');
@@ -32,26 +59,29 @@ class TwoTruthsOneLie extends React.Component {
   }
 
   render = () => (
-    <CardContainer>
-      <Card
-        selected={this.props.gameState.facts[0].selected}
-        index={0}
-        updateFact={this.updateFact}
-        handleSelect={this.handleSelect}
-      />
-      <Card
-        selected={this.props.gameState.facts[1].selected}
-        index={1}
-        updateFact={this.updateFact}
-        handleSelect={this.handleSelect}
-      />
-      <Card
-        selected={this.props.gameState.facts[2].selected}
-        index={2}
-        updateFact={this.updateFact}
-        handleSelect={this.handleSelect}
-      />
-    </CardContainer>
+    <Wrapper>
+      <CardContainer>
+        <Card
+          selected={this.props.gameState.facts[0].selected}
+          index={0}
+          updateFact={this.updateFact}
+          handleSelect={this.handleSelect}
+        />
+        <Card
+          selected={this.props.gameState.facts[1].selected}
+          index={1}
+          updateFact={this.updateFact}
+          handleSelect={this.handleSelect}
+        />
+        <Card
+          selected={this.props.gameState.facts[2].selected}
+          index={2}
+          updateFact={this.updateFact}
+          handleSelect={this.handleSelect}
+        />
+      </CardContainer>
+      <SubmitButton>Submit Facts</SubmitButton>
+    </Wrapper>
   );
 }
 

@@ -28,12 +28,7 @@ const GameIndicator = styled.div`
   user-select: none;
 `;
 
-const generateGameId = () => {
-  let base = Math.random();
-  base *= 10000;
-  base = Math.floor(base);
-  return base.toString();
-};
+const generateGameId = () => Math.floor(Math.random() * 10000).toString();
 
 export default class GameContainer extends React.Component {
   constructor(props) {
@@ -45,9 +40,7 @@ export default class GameContainer extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    subscribeToUpdates(this.handleUpdates);
-  }
+  componentDidMount = () => subscribeToUpdates(this.handleUpdates);
 
   getGameFromType = () => {
     switch (this.props.gameType) {
@@ -65,17 +58,9 @@ export default class GameContainer extends React.Component {
 
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
-  updateGameState = (gameState) => {
-    this.setState({ gameState });
-  }
-
-  changeName = (userName) => {
-    this.setState({ userName });
-  }
-
-  handleUpdates = (err, gameState) => {
-    this.setState({ ...this.state, gameState });
-  }
+  updateGameState = gameState => this.setState({ gameState });
+  changeName = userName => this.setState({ userName });
+  handleUpdates = (err, gameState) => this.setState({ ...this.state, gameState });
 
   render() {
     return (
