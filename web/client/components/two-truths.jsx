@@ -23,7 +23,7 @@ class TwoTruthsOneLie extends React.Component {
   }
 
   handleSelect = (index) => {
-    const newFacts = [...this.props.gameState.facts];
+    const newFacts = this.props.gameState.facts.map(f => ({ ...f, selected: false }));
     newFacts[index].selected = true;
     this.props.updateGameState({
       ...this.props.gameState,

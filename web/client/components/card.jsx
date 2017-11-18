@@ -6,6 +6,7 @@ const StyledCard = styled.div`
   height: 100px;
   width: 100%;
   margin: 10px;
+  cursor: pointer;
   background-color: ${props => (props.selected ? '#e74c3c' : 'white')};
   box-shadow: 0 2px 4px rgba(50, 50, 93, .1);
   text-shadow: 0 1px 3px rgba(50,50,93,.11);  
@@ -53,9 +54,8 @@ export default class Card extends React.Component {
     this.props.updateFact(this.props.index, this.state.inputFact);
   }
 
-  handleSelect = () => {
-    this.props.handleSelect(this.props.index);
-  }
+  handleSelect = e =>
+    e.target.localName !== 'input' && this.props.handleSelect(this.props.index);
 
   render = () => (
     <StyledCard
