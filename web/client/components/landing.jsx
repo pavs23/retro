@@ -91,8 +91,9 @@ export default class Landing extends React.Component {
             this.state.started && (
               <GamesList>
                 <Game to="/twotruthsonelie">Two truths - One Lie</Game>
+                <Game to="/retrospect">Sprint Retro</Game>
                 <DisabledGame to="/">Impersonator</DisabledGame>
-                <JoinGame to="/join">Join Game</JoinGame>
+                <JoinGame to="/join">Join Game</JoinGame> 
               </GamesList>
             )
           }
