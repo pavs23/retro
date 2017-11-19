@@ -46,7 +46,7 @@ class TwoTruthsOneLie extends React.Component {
   updateFact = (index, fact) => {
     if (index > 3 || index < 0) throw new Error('Unexpected number of facts.');
     const newGameState = this.props.gameState;
-    newGameState.facts[index] = fact;
+    newGameState.facts[index].value = fact;
     this.props.updateGameState(newGameState);
   }
 
@@ -56,6 +56,16 @@ class TwoTruthsOneLie extends React.Component {
     this.props.updateGameState({
       ...this.props.gameState,
       facts: newFacts,
+    });
+  }
+
+  handleSubmit = () => {
+    // TODO: Check to see that user has entered all of their facts.
+    const newPlayers = this.props.gameState.players;
+    newPlayers[newPlayers.findIndex(p => p.isMe)].mood = '😎';
+    this.props.updateGameState({
+      ...this.props.gameState,
+      players: newPlayers,
     });
   }
 
@@ -81,7 +91,7 @@ class TwoTruthsOneLie extends React.Component {
           handleSelect={this.handleSelect}
         />
       </CardContainer>
-      <SubmitButton>Submit Facts</SubmitButton>
+      <SubmitButton onClick={this.handleSubmit}>Submit Facts</SubmitButton>
     </Wrapper>
   );
 }
@@ -91,6 +101,11 @@ TwoTruthsOneLie.propTypes = {
     facts: PropTypes.arrayOf(PropTypes.shape({
       selected: PropTypes.bool,
       value: PropTypes.string,
+    })),
+    players: PropTypes.arrayOf(PropTypes.shape({
+      mood: PropTypes.string,
+      isMe: PropTypes.bool,
+      name: PropTypes.string,
     })),
   }),
   updateGameState: PropTypes.func.isRequired,

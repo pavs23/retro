@@ -28,7 +28,7 @@ const PlayerText = styled.a`
   user-select: none;
 
   &:hover {
-    transform: translate(-5%, 0);
+    transform: translate(-2%, 0);
   }
 `;
 
@@ -43,7 +43,7 @@ const CurrentPlayers = props => (
   <PlayerContainer>
     {props.players.map(p => (
       <Player key={p.name}>
-        <PlayerText isMe={p.isMe}>{p.name}</PlayerText>
+        <PlayerText isMe={p.isMe}>{`${p.name} ${p.mood}`}</PlayerText>
       </Player>
     ))}
   </PlayerContainer>

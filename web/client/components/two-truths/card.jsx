@@ -36,7 +36,7 @@ const FactField = styled.input`
   background-color: inherit;
 
   &:focus {
-    outline: none;
+    outline: none; 
   }
 
   &::placeholder {
