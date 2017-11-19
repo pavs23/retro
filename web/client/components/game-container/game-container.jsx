@@ -34,7 +34,6 @@ export default class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
       gameId: this.props.gameId,
       gameState: gameOne,
     };
@@ -59,14 +58,25 @@ export default class GameContainer extends React.Component {
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
   updateGameState = gameState => this.setState({ gameState });
-  changeName = userName => this.setState({ userName });
   handleUpdates = (err, gameState) => this.setState({ ...this.state, gameState });
+
+  changeName = (userName) => {
+    const newPlayers = this.state.gameState.players;
+    newPlayers[newPlayers.findIndex(p => p.isMe)].name = userName;
+    this.setState({
+      userName,
+      players: newPlayers,
+    });
+  }
 
   render() {
     return (
       <Container>
         <GameIndicator>GameId: <GameId>{this.state.gameId}</GameId> </GameIndicator>
-        <NameField changeName={this.changeName} userName={this.state.userName} />
+        <NameField
+          changeName={this.changeName}
+          userName={this.state.gameState.players.find(p => p.isMe).name}
+        />
         {this.getGameFromType()}
         <CurrentPlayers players={this.state.gameState.players} />
       </Container>

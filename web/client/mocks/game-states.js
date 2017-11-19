@@ -1,8 +1,8 @@
 const gameOne = {
   players: [
     {
-      name: 'Wilhelm',
-      mood: '🤔',
+      name: '',
+      mood: '👻',
       isMe: true,
     },
     {

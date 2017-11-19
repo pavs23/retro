@@ -60,13 +60,15 @@ class TwoTruthsOneLie extends React.Component {
   }
 
   handleSubmit = () => {
-    // TODO: Check to see that user has entered all of their facts.
-    const newPlayers = this.props.gameState.players;
-    newPlayers[newPlayers.findIndex(p => p.isMe)].mood = '😎';
-    this.props.updateGameState({
-      ...this.props.gameState,
-      players: newPlayers,
-    });
+    if (this.props.gameState.facts.every(f => f.value)
+    && this.props.gameState.players.find(f => f.isMe).name) {
+      const newPlayers = this.props.gameState.players;
+      newPlayers[newPlayers.findIndex(p => p.isMe)].mood = '😎';
+      this.props.updateGameState({
+        ...this.props.gameState,
+        players: newPlayers,
+      });
+    }
   }
 
   render = () => (
