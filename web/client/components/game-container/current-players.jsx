@@ -6,27 +6,46 @@ const PlayerContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column-reverse;
-  bottom: 10px;
+  bottom: 50%;
+  transform: translate(0, 50%);
   right: 10px;
   width: 250px;
-  height: 350px;
+  height: auto;
+`;
+
+const PlayerText = styled.a`
+  display: inline-block;
+  padding: 0 14px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: default;
+  font-weight: ${props => (props.isMe ? '700' : '400')};  
+  color: black;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  user-select: none;
+
+  &:hover {
+    transform: translate(-5%, 0);
+  }
 `;
 
 const Player = styled.div`
-  width: 95%;
-  margin-right: 5%;
-  height: 40px;
-  font-size: 18px;
   text-align: right;
-  font-weight: ${props => (props.isMe ? '700' : '400')};  
-  margin-right: 20px;
+  margin-right: 5%;
+  width: 100%;
   margin-top: 10px;
-  color: black;
 `;
 
 const CurrentPlayers = props => (
   <PlayerContainer>
-    {props.players.map(p => <Player key={p.name} isMe={p.isMe}>{p.name}</Player>)}
+    {props.players.map(p => (
+      <Player key={p.name}>
+        <PlayerText isMe={p.isMe}>{p.name}</PlayerText>
+      </Player>
+    ))}
   </PlayerContainer>
 );
 

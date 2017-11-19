@@ -29,6 +29,7 @@ const SubmitButton = styled.a`
   background-color: #fff;
   font-size: 18px;
   font-weight: 700;
+  user-select: none;
   letter-spacing: .025em;
   color: #34495e;
   text-transform: uppercase;
