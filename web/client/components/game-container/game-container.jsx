@@ -23,7 +23,7 @@ const GameIndicator = styled.div`
   right: 22px;
   font-size: 18px;
   font-weight: 700;
-  position: fixed; 
+  position: fixed;
   cursor: pointer;
   user-select: none;
 `;
@@ -61,13 +61,17 @@ export default class GameContainer extends React.Component {
   handleUpdates = (err, gameState) => this.setState({ ...this.state, gameState });
 
   changeName = (userName) => {
-    const newPlayers = this.state.gameState.players;
-    newPlayers[newPlayers.findIndex(p => p.isMe)].name = userName;
-    this.setState({
-      userName,
-      players: newPlayers,
-    });
+    const players = [...this.state.gameState.players];
+    if (players.every(x => x.name !== userName)) {
+      const myIndex = players.findIndex(p => p.isMe);
+      players[myIndex].name = userName;
+      players[myIndex].mood = '🤔';
+      this.setState({
+        players,
+      });
+    }
   }
+
 
   render() {
     return (
