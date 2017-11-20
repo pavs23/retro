@@ -1,23 +1,29 @@
 const gameOne = {
   players: [
     {
-      name: 'Wilhelm',
+      name: '',
+      mood: '👻',
       isMe: true,
     },
     {
       name: 'Garson',
+      mood: '🤔',
     },
     {
       name: 'Bell',
+      mood: '🤔',
     },
     {
       name: 'Kenneth',
+      mood: '🤔',
     },
     {
       name: 'Anastasia',
+      mood: '🤔',
     },
     {
       name: 'Davey',
+      mood: '🤔',
     },
   ],
   facts: [
@@ -34,6 +40,7 @@ const gameOne = {
       selected: false,
     },
   ],
+  submitted: false,
 };
 
 export default gameOne;

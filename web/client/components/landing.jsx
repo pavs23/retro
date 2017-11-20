@@ -63,12 +63,9 @@ export default class Landing extends React.Component {
     this.state = {
       started: false,
     };
-    this.start = this.start.bind(this);
   }
 
-  start = () => {
-    this.setState({ started: true });
-  }
+  start = () => this.setState({ started: true });
 
   render = () => {
     const WelcomeBox = styled.div`

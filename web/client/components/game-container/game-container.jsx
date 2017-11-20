@@ -23,31 +23,23 @@ const GameIndicator = styled.div`
   right: 22px;
   font-size: 18px;
   font-weight: 700;
-  position: fixed; 
+  position: fixed;
   cursor: pointer;
   user-select: none;
 `;
 
-const generateGameId = () => {
-  let base = Math.random();
-  base *= 10000;
-  base = Math.floor(base);
-  return base.toString();
-};
+const generateGameId = () => Math.floor(Math.random() * 10000).toString();
 
 export default class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
       gameId: this.props.gameId,
       gameState: gameOne,
     };
   }
 
-  componentDidMount = () => {
-    subscribeToUpdates(this.handleUpdates);
-  }
+  componentDidMount = () => subscribeToUpdates(this.handleUpdates);
 
   getGameFromType = () => {
     switch (this.props.gameType) {
@@ -65,23 +57,30 @@ export default class GameContainer extends React.Component {
 
   // This is temporary workaround. Game state will be published
   // to API, which will update all clients' gameStates instead.
-  updateGameState = (gameState) => {
-    this.setState({ gameState });
-  }
+  updateGameState = gameState => this.setState({ gameState });
+  handleUpdates = (err, gameState) => this.setState({ ...this.state, gameState });
 
   changeName = (userName) => {
-    this.setState({ userName });
+    const players = [...this.state.gameState.players];
+    if (players.every(x => x.name !== userName)) {
+      const myIndex = players.findIndex(p => p.isMe);
+      players[myIndex].name = userName;
+      players[myIndex].mood = '🤔';
+      this.setState({
+        players,
+      });
+    }
   }
 
-  handleUpdates = (err, gameState) => {
-    this.setState({ ...this.state, gameState });
-  }
 
   render() {
     return (
       <Container>
         <GameIndicator>GameId: <GameId>{this.state.gameId}</GameId> </GameIndicator>
-        <NameField changeName={this.changeName} userName={this.state.userName} />
+        <NameField
+          changeName={this.changeName}
+          userName={this.state.gameState.players.find(p => p.isMe).name}
+        />
         {this.getGameFromType()}
         <CurrentPlayers players={this.state.gameState.players} />
       </Container>
